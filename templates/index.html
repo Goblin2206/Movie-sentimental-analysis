@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Movie Review Sentiment Analysis
+    </title>
+
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <div class="container">
+
+
+        <!-- HEADER -->
+
+        <div class="header">
+
+            <div class="movie-icon">
+                🎬
+            </div>
+
+            <h1>
+                Movie Review
+            </h1>
+
+            <h2>
+                Sentiment Analysis
+            </h2>
+
+            <p>
+                Analyze a movie review using
+                Machine Learning
+            </p>
+
+        </div>
+
+
+        <!-- FORM -->
+
+        <form
+            action="/predict"
+            method="POST"
+        >
+
+
+            <!-- MOVIE NAME -->
+
+            <label>
+                🎥 Movie Name
+            </label>
+
+            <input
+                type="text"
+                name="movie"
+                placeholder="Enter movie name..."
+                value="{{ movie if movie else '' }}"
+                required
+            >
+
+
+            <!-- REVIEW -->
+
+            <label>
+                📝 Movie Review
+            </label>
+
+            <textarea
+                name="review"
+                placeholder="Write your movie review here..."
+                required
+            >{{ review if review else '' }}</textarea>
+
+
+            <!-- BUTTON -->
+
+            <button
+                type="submit"
+            >
+                🔍 Analyze Sentiment
+            </button>
+
+
+        </form>
+
+
+        <!-- ERROR -->
+
+        {% if error %}
+
+        <div class="error">
+
+            ⚠️ {{ error }}
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- RESULT -->
+
+        {% if result %}
+
+        <div class="result">
+
+
+            <h2>
+                📊 Analysis Result
+            </h2>
+
+
+            <div class="movie-result">
+
+                🎬
+
+                <strong>
+                    {{ movie }}
+                </strong>
+
+            </div>
+
+
+            <div class="sentiment">
+
+                {{ result }}
+
+            </div>
+
+
+            <div class="confidence">
+
+                <span>
+                    Confidence
+                </span>
+
+                <strong>
+                    {{ confidence }}%
+                </strong>
+
+            </div>
+
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- FOOTER -->
+
+        <div class="footer">
+
+            <p>
+                Movie Review Sentiment Analysis
+            </p>
+
+            <p>
+                Powered by Python & Machine Learning
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>
